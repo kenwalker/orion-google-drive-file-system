@@ -2,8 +2,7 @@
  * Google Drive FileSystem for Eclipse Orion
  * Author: Maciej Bendkowski <maciej.bendkowski@gmail.com>
  *******************************************************************************/
-/*global window eclipse:true orion FileReader console gapi XMLHttpRequest btoa */
-var _CLIENT_ID_ = '46990236932.apps.googleusercontent.com';
+/*global window eclipse:true orion FileReader console gapi XMLHttpRequest btoa localStorage */
 var _SCOPES_ = ['https://www.googleapis.com/auth/drive'];
 
 /**
@@ -35,7 +34,7 @@ GoogleDriveAPI.prototype = {
 		}
 		
 		gapi.auth.authorize({
-			'client_id': _CLIENT_ID_,
+			'client_id': localStorage.getItem('googleDriveFileSystemClientID'),
 			'scope': _SCOPES_.join(' '),
 			'immediate': immediate}, handleAuthResult);
 	},

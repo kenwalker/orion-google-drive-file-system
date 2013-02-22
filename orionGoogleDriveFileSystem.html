@@ -21,7 +21,15 @@
 			    
 			    var api = new GoogleDriveAPI();
 			    var authButton = document.getElementById('authorizeButton');
+			    var clientIDField = document.getElementById('clientIDField');
+			    
+			    if(localStorage.getItem('googleDriveFileSystemClientID')){
+			    	clientIDField.value = localStorage.getItem('googleDriveFileSystemClientID');
+			    }
+			    
 			    authButton.onclick = function() {
+			    	localStorage.setItem('googleDriveFileSystemClientID', clientIDField.value);
+			    
 			    	/* hack for authentication */
 		       		api.about(function(resp){
 						console.log('Current user name: ' + resp.name);
@@ -47,7 +55,6 @@
 					},
 					function(e) {
 						console.log("Google Drive plugin error: " + e);
-						alert("Google Drive plugin error: " + e);
 					});
 			};
 		</script>
@@ -56,6 +63,7 @@
 		<center><h2>Google Drive File System Plugin for Orion</h2></center>
 		<p align="center"><img src="./images/orion-logo.jpg"> <img src="./images/google-drive-logo.png"></p>
 		<p align="center">This is a plugin for <a href="http://wiki.eclipse.org/Orion/">Orion</a>. It is not meant to be viewed in a browser.</p>
+		<center><input type="text" size="25" id="clientIDField" value="Enter your Google Drive API CLIENT_ID" /></center>
 		<center><input type="button" id="authorizeButton" value="Authorize Google Drive File System Plugin for Orion" /></center>
 	</body>
 </html>
