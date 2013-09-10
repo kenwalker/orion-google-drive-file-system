@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="copyright" content="Maciej Bendkowski <maciej.bendkowski@gmail.com>">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script src="https://apis.google.com/js/client.js"></script>
+		<script src="deferred.js"></script>
+		<script src="plugin.js"></script>
+		<script src="orionInterface.js"></script>
+		<script src="googleDriveAPI.js"></script>
+		<script src="orionGoogleDriveFileSystem.js"></script>
+		
+		<script type="text/javascript">
+			/* global window eclipse */
+			window.onload = function() {
+				var headers = {
+			       name: "Google Drive File System",
+			       version: "1.0",
+			       description: "Google Drive File System support for Eclispe Orion"
+			    };
+			    
+			    var api = new GoogleDriveAPI();
+			    var authButton = document.getElementById('authorizeButton');
+			    var clientIDField = document.getElementById('clientIDField');
+			    
+			    if(localStorage.getItem('googleDriveFileSystemClientID')){
+			    	clientIDField.value = localStorage.getItem('googleDriveFileSystemClientID');
+			    }
+			    
+			    authButton.onclick = function() {
+			    	localStorage.setItem('googleDriveFileSystemClientID', clientIDField.value);
+			    
+			    	/* hack for authentication */
+		       		api.about(function(resp){
+						console.log('Current user name: ' + resp.name);
+						console.log('Root folder ID: ' + resp.rootFolderId);
+						console.log('Total quota (bytes): ' + resp.quotaBytesTotal);
+						console.log('Used quota (bytes): ' + resp.quotaBytesUsed);
+						alert("Authorization granted for user: " + resp.name);
+					});
+		        };
+			
+				var provider = new orion.PluginProvider(headers);
+				var implementation = new eclipse.OrionGoogleDriveFileSystem();
+			
+				// Google Drive Filesystem
+				provider.registerService("orion.core.file", implementation, {
+					Name: 'Google Drive File System',
+					top: "drive.google.com/",
+					base: "drive.google.com/"
+				});
+			
+				provider.connect(function() { 
+						console.log('Google Drive plugin connected.');
+					},
+					function(e) {
+						console.log("Google Drive plugin error: " + e);
+					});
+			};
+		</script>
+	</head>
+	<body>
+		<center><h2>Google Drive File System Plugin for Orion</h2></center>
+		<p align="center"><img src="./images/orion-logo.jpg"> <img src="./images/google-drive-logo.png"></p>
+		<p align="center">This is a plugin for <a href="http://wiki.eclipse.org/Orion/">Orion</a>. It is not meant to be viewed in a browser.</p>
+		<center><input type="text" size="25" id="clientIDField" value="Enter your Google Drive API CLIENT_ID" /></center>
+		<center><input type="button" id="authorizeButton" value="Authorize Google Drive File System Plugin for Orion" /></center>
+	</body>
+</html>
