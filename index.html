@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Orion-google-drive-file-system : Google Drive Plugin for Eclipse Orion" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Orion-google-drive-file-system</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/maciej-bendkowski/orion-google-drive-file-system">View on GitHub</a>
+
+          <h1 id="project_title">Orion-google-drive-file-system</h1>
+          <h2 id="project_tagline">Google Drive Plugin for Eclipse Orion</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/maciej-bendkowski/orion-google-drive-file-system/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/maciej-bendkowski/orion-google-drive-file-system/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="orion-google-drive-file-system-plugin" class="anchor" href="#orion-google-drive-file-system-plugin"><span class="octicon octicon-link"></span></a>Orion Google Drive File System Plugin</h1>
+
+<h2>
+<a name="information" class="anchor" href="#information"><span class="octicon octicon-link"></span></a>Information</h2>
+
+<p>This plugin was originated during the <a href="http://wiki.eclipse.org/Orion_Hackaton_Krakow_2012">http://wiki.eclipse.org/Orion_Hackaton_Krakow_2012</a>.
+ Please raport any bugs and/or suggestions directly to the author.</p>
+
+<p>Overview</p>
+
+<hr><p>This plugin provides a fully functional Orion Filesystem ("orion.file.core" service) for Google Drive (<a href="https://drive.google.com/#my-drive">https://drive.google.com/#my-drive</a>).
+ With this plugin you may now view, edit, create, delete, copy, move and rename any files in your Google Drive using Eclipse Orion.</p>
+
+<p>Basic instalation</p>
+
+<hr><p>First of all, you need to host the plugin. Clone this repository in any public domain and install it in your Orion instance.
+ One possibility would be OrionHub (see: <a href="http://wiki.eclipse.org/Orion/How_Tos/Setup_Orion_Client_Hosted_Site_on_OrionHub">http://wiki.eclipse.org/Orion/How_Tos/Setup_Orion_Client_Hosted_Site_on_OrionHub</a>).
+ Go to Settings-&gt;plugins and install the plugin. Now, you have to obtain API access for the plugin. Create an API project in the Google API Console
+ (<a href="https://code.google.com/apis/console/">https://code.google.com/apis/console/</a>). Select the Services tab in your API project, and enable the Drive API. Select the API Access tab in your API project,
+ and click Create an OAuth 2.0 client ID. In the Branding Information section, provide a name for your application (e.g. "Orion Google Drive"),
+ and click Next. Providing a product logo is optional. In the Client ID Settings section, do the following:</p>
+
+<ul>
+<li>Select Web application for the Application type</li>
+<li>Click the more options link next to the heading, Your site or hostname.</li>
+<li>List your hostname in the Authorized Redirect URIs and JavaScript Origins fields.</li>
+<li>
+<p>Click Create Client ID.</p>
+
+<p>In the API Access page, locate the section Client ID for Web applications and note the Client ID value.
+List your hostname in JavaScript origins in the Client ID settings.</p>
+
+<p>Now you've got your CLIENT_ID. Go to the plugin page. Paste your CLIENT_ID in the text field and click 'Authorize Google Drive File System Plugin for Orion'.
+Provide your google credentials. Congratulations, you may go now to the Orion Navigator and connect to your Google Drive.</p>
+
+<h2>
+<a name="note" class="anchor" href="#note"><span class="octicon octicon-link"></span></a>Note</h2>
+
+<p>Each time your google credentials expire you need to go to the plugin page and authorize again.
+Be aware, your CLIENT_ID is saved in to browser localStorage.</p>
+</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Orion-google-drive-file-system maintained by <a href="https://github.com/maciej-bendkowski">maciej-bendkowski</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
